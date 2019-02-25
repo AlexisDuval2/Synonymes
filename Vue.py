@@ -26,6 +26,8 @@ class Vue:
         
         self.choixValide = []
         
+        self.resultats = []
+        
     def lancer(self):
         print()
         print()
@@ -34,7 +36,6 @@ class Vue:
         print("========================")
         print()
         print("Bonjour, bienvenue au logiciel qui trouve des synonymes.")
-        print("--> Note: entrer \'q\' comme choix de mot pour quitter")
         
         for i in range(3):
             self.choix.append(None)
@@ -45,65 +46,78 @@ class Vue:
             or self.choixValide[2] == False:
 
             print()
-            print("Veuillez entrer un mot, un nb de résultats et un choix de méthode")
+            print("Veuillez entrer un mot, le nb de synonymes que vous voulez et un choix de méthode")
             print("0 : produit scalaire")
             print("1 : méhode moindres-carrées")
             print("2 : méthode bloc de ville")
+            print("--> Note: vous pouvez entrer \'q\' comme choix de mot pour quitter")
             
             self.choix = input("\t").split()
-
-            if len(self.choix) >= 3:
             
-                #----------------------------------------------------------------------
-                if self.choix[0] == self.optionQuitter:
-                    print("Merci beaucoup! A la prochaine :)")
-                    return 0
+            if self.choix[0] == self.optionQuitter:
+                print()
+                print("Merci beaucoup! A la prochaine :)")
+                return 0
 
-                elif self.choix[0] != '0':
-                    self.choixValide = True
-                    print("mot ok")
+            elif len(self.choix) >= 3:
+                
+                print()
+                print("---------------")
+                #----------------------------------------------------------------------
+                if self.choix[0] != '0':
+                    print("mot = " + self.choix[0])
+                    self.choixValide[0] = True
     
                 else:
-                    self.choixValide = False
                     print("* mot invalide *")
+                    self.choixValide[0] = False
                     self.choix[0] = None
                 #----------------------------------------------------------------------
                 if self.choix[1] != 'a':
-                    self.choixValide = True
-                    print("nb de résultats ok")
+                    print("nb de résultats = " + self.choix[1])
+                    self.choixValide[1] = True
     
                 else:
-                    self.choixValide = True
-                    self.choix[1] = None
                     print("* nb de résultats invalide *")
+                    self.choixValide[1] = True
+                    self.choix[1] = None
                 #----------------------------------------------------------------------
                 if self.choix[2] == '0':
-                    self.choixValide = True
-                    print("méthode produit scalaire")
+                    print("méthode = produit scalaire")
+                    self.choixValide[2] = True
     
                 elif self.choix[2] == '1':
-                    self.choixValide = True
-                    print("méthode moindres carrés")
+                    print("méthode = moindres carrés")
+                    self.choixValide[2] = True
     
                 elif self.choix[2] == '2':
-                    self.choixValide = True
-                    print("méthode bloc de ville")
+                    print("méthode = bloc de ville")
+                    self.choixValide[2] = True
     
                 else:
-                    self.choixValide = True
-                    print("méthode choisie invaide")
+                    print("* méthode choisie invalide *")
+                    self.choixValide[2] = True
                     self.choix[2] = None
                 #----------------------------------------------------------------------
+                print("---------------")
                 
+                lecteur = Lecteur()
+                lecteur.lancer()
+
+                comparateur = Comparateur(lecteur)
+                self.choix[1] = int(self.choix[1])
+                self.resultats = comparateur.lancer(self.choix[0], self.choix[1], self.choix[2])
+                
+                Outils.afficher(self.resultats)
+
                 print()
                 print("============================================")
             
             else:
                 print()
-                print("----------------------------")
-                print(" Veuillez recommencer svp")
-                print("----------------------------")
-
+                print("------------------------------------------------")
+                print(" Arguments invalides, veuillez recommencer svp")
+                print("------------------------------------------------")
                 
             self.choix = []
             self.choixValide = []

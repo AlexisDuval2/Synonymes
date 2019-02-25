@@ -9,6 +9,12 @@ class Outils:
         pass
     
     @staticmethod
+    def afficher(tuple):
+        print()
+        for i in tuple:
+            print(i)
+    
+    @staticmethod
     def validerChoixMot():
         print ("validerChoixMot")
     

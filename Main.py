@@ -11,9 +11,6 @@ from Vue import *
 def main():
 
     try:
-        lecteur = Lecteur()
-        lecteur.lancer()
-
         vue = Vue()
         vue.lancer()
         
