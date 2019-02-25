@@ -74,8 +74,8 @@ class Vue:
     
                 else:
                     self.choixValide = True
+                    self.choix[1] = None
                     print("* nb de résultats invalide *")
-                    self.choix[1] = 0
                 #----------------------------------------------------------------------
                 if self.choix[2] == '0':
                     self.choixValide = True
@@ -94,17 +94,21 @@ class Vue:
                     print("méthode choisie invaide")
                     self.choix[2] = None
                 #----------------------------------------------------------------------
+                
+                print()
+                print("============================================")
             
             else:
-                
-                self.choix = []
-                
-                for i in range(3):
-                    self.choix.append(None)
-                    self.choixValide.append(False)
+                print()
+                print("----------------------------")
+                print(" Veuillez recommencer svp")
+                print("----------------------------")
 
-            print()
-            print("----------------------------")
-            print(" Veuillez recommencer svp")
-            print("----------------------------")
-            print()
+                
+            self.choix = []
+            self.choixValide = []
+
+            for i in range(3):
+                self.choix.append(None)
+                self.choixValide.append(False)
+
