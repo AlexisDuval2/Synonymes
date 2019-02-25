@@ -8,10 +8,12 @@ from operator import itemgetter
 # --------------------------------------
 class Comparateur:
 
-    def __init__(self, liste, dictionnaire, matrice):
-        self.liste = liste
-        self.dictionnaire = dictionnaire
-        self.matrice = matrice
+    def __init__(self, lecteur):
+        
+        self.lecteur = lecteur
+        self.liste = lecteur.liste
+        self.dictionnaire = lecteur.dictionnaire
+        self.matrice = lecteur.matrice
         self.resultats = []
         self.motsASupprimer = {}
         

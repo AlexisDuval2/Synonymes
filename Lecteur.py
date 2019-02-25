@@ -10,7 +10,6 @@ import numpy as np
 class Lecteur:
 
     def __init__(self):
-        
         self.tailleFenetre = int(sys.argv[1])
         self.decalage = int(self.tailleFenetre / 2)
         self.encodage = sys.argv[2]

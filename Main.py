@@ -11,12 +11,10 @@ from Vue import *
 def main():
 
     try:
-        tailleFenetre = int(sys.argv[1])
-        encodage = sys.argv[2]
-        chemin = sys.argv[3]
+        lecteur = Lecteur()
+        lecteur.lancer()
 
         vue = Vue()
-        vue.algo()
         vue.lancer()
         
     except Exception as e:
