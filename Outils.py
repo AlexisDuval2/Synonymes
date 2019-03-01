@@ -5,9 +5,13 @@
 # --------------------------------------
 class Outils:
 
-    def __init__(self):
-        pass
-    
+    mots = "un \
+            une \
+            les"
+    listeDArret = {}
+    for mot in mots.split():
+        listeDArret[mot] = 1
+
     @staticmethod
     def afficher(tuple):
         print()

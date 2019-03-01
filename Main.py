@@ -9,6 +9,8 @@ from Vue import *
 # Main
 # --------------------------------------
 def main():
+    
+    print(sys.path)
 
     try:
         vue = Vue()

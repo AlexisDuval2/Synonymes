@@ -11,8 +11,9 @@ class Lecteur:
 
     def __init__(self):
         self.tailleFenetre = int(sys.argv[1])
-        self.decalage = int(self.tailleFenetre / 2)
+        self.decalage = self.tailleFenetre//2
         self.encodage = sys.argv[2]
+#         self.chemin = sys.argv[3:]
         self.chemin = sys.argv[3]
         self.texte = ""
         self.expression = "\w+"
@@ -41,11 +42,9 @@ class Lecteur:
         self.texte = self.texte.lower()
         
     def chargerListe(self):
-        for mot in re.findall(self.expression, self.texte):
-            self.liste.append(mot)
+        self.liste = re.findall(self.expression, self.texte)
         
     def chargerDictionnaire(self):
-        # note: le dictionnaire contient l'index de chaque mot
         compteur = 0
         for mot in self.liste:
             if mot not in self.dictionnaire:
@@ -56,18 +55,17 @@ class Lecteur:
         taille = len(self.dictionnaire)
         self.matrice = np.zeros((taille, taille))
         
-        for i in range(len(self.liste) - self.tailleFenetre):
+        for i in range(self.decalage, len(self.liste) - self.decalage):
 
             mot = self.liste[i]
             ligne = self.dictionnaire[mot]
 
-            for j in range(-self.decalage, self.decalage):
+            for j in range(i - self.decalage, i + self.decalage):
 
-                if j == 0:
-                    continue
-
-                motTemp = self.liste[i + j]
+                motTemp = self.liste[j]
                 colonne = self.dictionnaire[motTemp]
+                if colonne == ligne:
+                    continue
                 self.matrice[ligne][colonne] += 1
     
     def lancer(self):

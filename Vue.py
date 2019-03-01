@@ -29,6 +29,10 @@ class Vue:
         self.resultats = []
         
     def lancer(self):
+        
+        lecteur = Lecteur()
+        lecteur.lancer()
+        
         print()
         print()
         print("========================")
@@ -101,8 +105,6 @@ class Vue:
                 #----------------------------------------------------------------------
                 print("---------------")
                 
-                lecteur = Lecteur()
-                lecteur.lancer()
 
                 comparateur = Comparateur(lecteur)
                 self.choix[1] = int(self.choix[1])
