@@ -4,6 +4,7 @@ import sys
 from Lecteur import *
 from Comparateur import *
 from Outils import *
+import time
 
 # --------------------------------------
 # classe Vue
@@ -30,8 +31,15 @@ class Vue:
         
     def lancer(self):
         
+        #--------------------------------------
+        bonjour = time.time()
+        #--------------------------------------
         lecteur = Lecteur()
         lecteur.lancer()
+        #--------------------------------------
+        duree = time.time() - bonjour
+        print(duree)
+        #--------------------------------------
         
         print()
         print()

@@ -13,9 +13,8 @@ class Lecteur:
         self.tailleFenetre = int(sys.argv[1])
         self.decalage = self.tailleFenetre//2
         self.encodage = sys.argv[2]
-#         self.chemin = sys.argv[3:]
-        self.chemin = sys.argv[3]
-        self.texte = ""
+        self.chemin = sys.argv[3:]
+        self.texte = []
         self.expression = "\w+"
         self.liste = []
         self.dictionnaire = {}
@@ -23,9 +22,13 @@ class Lecteur:
     
     def extraire(self):
         try:
-            fichier = open(self.chemin, 'r', encoding = self.encodage)
-            self.texte = fichier.read()
-            fichier.close()
+            for fichier in self.chemin:
+                fichier = open(fichier, 'r', encoding = self.encodage)
+                self.texte.append(fichier.read())
+                fichier.close()
+            test = ''.join(self.texte)
+            self.texte = test
+                
         except FileNotFoundError as fnf:
             print()
             print("Problème de chemin")
