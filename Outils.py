@@ -19,7 +19,7 @@ class Outils:
         print()
         print("Tapez q pour quitter")
         print()
-        
+
     @staticmethod
     def afficherMsgQuitter():
         print()
@@ -29,15 +29,3 @@ class Outils:
     def afficher(tuple):
         for i in tuple:
             print(i)
-    
-    @staticmethod
-    def validerChoixMot():
-        print ("validerChoixMot")
-    
-    @staticmethod
-    def validerChoixNbDeResultats():
-        print ("validerChoixNbDeResultats")
-    
-    @staticmethod
-    def validerChoixMethodeChoisie():
-        print ("validerChoixMethodeChoisie")

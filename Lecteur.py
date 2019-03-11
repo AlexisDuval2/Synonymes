@@ -26,20 +26,14 @@ class Lecteur:
                 fichier = open(fichier, 'r', encoding = self.encodage)
                 self.texte.append(fichier.read())
                 fichier.close()
-            test = ''.join(self.texte)
-            self.texte = test
-                
+            resultat = ''.join(self.texte)
+            self.texte = resultat
         except FileNotFoundError as fnf:
             print()
             print("Problème de chemin")
-            print(fnf)
-            return 0;
         except Exception as e:
             print()
             print("Problème générique")
-            print(e)
-            return 0
-        return 1
             
     def mettreEnMinuscule(self):
         self.texte = self.texte.lower()
@@ -56,16 +50,11 @@ class Lecteur:
             
     def chargerMatrice(self):
         taille = len(self.dictionnaire)
-        print(taille)
         self.matrice = np.zeros((taille, taille))
-        
         for i in range(self.decalage, len(self.liste) - self.decalage):
-
             mot = self.liste[i]
             ligne = self.dictionnaire[mot]
-
             for j in range(i - self.decalage, i + self.decalage):
-
                 motTemp = self.liste[j]
                 colonne = self.dictionnaire[motTemp]
                 if colonne == ligne:

@@ -51,5 +51,5 @@ class Comparateur:
             self.moindresCarres(mot)
         elif methode == '2':
             self.blocDeVille(mot)
-        
+
         return self.resultats[:nbDeResultats]
