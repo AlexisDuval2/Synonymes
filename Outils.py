@@ -1,77 +1,32 @@
 # -*- coding: utf-8 -*-
 
+from ListeDArret import *
+
 # --------------------------------------
 # classe Outils
 # --------------------------------------
 class Outils:
-
-    mots = "un \
-            une \
-            les \
-            de \
-            le \
-            il \
-            à \
-            l \
-            d \
-            des \
-            que \
-            en \
-            qui \
-            dans \
-            se \
-            elle \
-            qu \
-            s \
-            du \
-            sur \
-            vous \
-            était \
-            son \
-            lui \
-            au \
-            pas \
-            pour \
-            avait \
-            ce \
-            ne \
-            je \
-            sa \
-            avec \
-            on \
-            plus \
-            comme \
-            par \
-            la \
-            et \
-            est \
-            mais \
-            tout \
-            ses \
-            artagnan \
-            dit \
-            deux \
-            c \
-            cette \
-            n \
-            m \
-            si \
-            ils \
-            même \
-            sans \
-            a \
-            où \
-            nous \
-            tous \
-            y \
-            "
+    
     listeDArret = {}
-    for mot in mots.split():
+    for mot in ListeDArret.mots.split():
         listeDArret[mot] = 1
 
     @staticmethod
-    def afficher(tuple):
+    def afficherMsgInitial():
         print()
+        print("Entrez un mot, le nombre de synonymes que vous voulez et la méthode de calcul,")
+        print("i.e. prduit scalaire: 0, least squares: 1, cityblock: 2")
+        print()
+        print("Tapez q pour quitter")
+        print()
+        
+    @staticmethod
+    def afficherMsgQuitter():
+        print()
+        print("Merci beaucoup! A la prochaine :)")
+
+    @staticmethod
+    def afficher(tuple):
         for i in tuple:
             print(i)
     
