@@ -11,7 +11,10 @@ from Vue import *
 def main():
     print(sys.path)
     try:
-        vue = Vue()
+        tailleFenetre = int(sys.argv[1])
+        encodage = sys.argv[2]
+        chemins = sys.argv[3:]
+        vue = Vue(tailleFenetre, encodage, chemins)
         vue.lancer()
     except Exception as e:
         print()

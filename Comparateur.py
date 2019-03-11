@@ -53,3 +53,26 @@ class Comparateur:
             self.blocDeVille(mot)
 
         return self.resultats[:nbDeResultats]
+
+
+#-----------------------------------------
+# simplifier fonctions...
+#-----------------------------------------
+# 
+# NE PAS METTRE DE PARENTHÈSES LORSQUE J'APPELLE DES FONCTIONS!
+#
+#     def incremente(x):
+#         return x+1
+#     
+#     f = incremente
+#     f(3) # ça va donner 4
+#     
+#     def ls(vecteur1, vecteur2):
+#         np.sum(np.square(v1, v2))
+#     
+#     f = ls
+#     calculer(mot, f)
+#     
+#     def calculer(mot, fonction):
+#         fonction(v1, v2)
+#-----------------------------------------

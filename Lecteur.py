@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import sys
 import re
 import numpy as np
 
@@ -9,11 +8,12 @@ import numpy as np
 # --------------------------------------
 class Lecteur:
 
-    def __init__(self):
-        self.tailleFenetre = int(sys.argv[1])
+    def __init__(self, tailleFenetre, encodage, chemins):
+        self.tailleFenetre = tailleFenetre
         self.decalage = self.tailleFenetre//2
-        self.encodage = sys.argv[2]
-        self.chemin = sys.argv[3:]
+        self.encodage = encodage
+        self.chemins = chemins
+
         self.texte = []
         self.expression = "\w+"
         self.liste = []
@@ -22,7 +22,7 @@ class Lecteur:
     
     def extraire(self):
         try:
-            for fichier in self.chemin:
+            for fichier in self.chemins:
                 fichier = open(fichier, 'r', encoding = self.encodage)
                 self.texte.append(fichier.read())
                 fichier.close()
