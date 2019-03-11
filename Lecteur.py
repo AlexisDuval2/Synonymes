@@ -56,6 +56,7 @@ class Lecteur:
             
     def chargerMatrice(self):
         taille = len(self.dictionnaire)
+        print(taille)
         self.matrice = np.zeros((taille, taille))
         
         for i in range(self.decalage, len(self.liste) - self.decalage):
