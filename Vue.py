@@ -27,6 +27,7 @@ class Vue:
         lecteur.lancer()
         fin = time.time()
         duree = fin - debut
+        print(duree)
         
         for i in range(self.nbDArguments):
             self.choix.append(None)
@@ -43,8 +44,14 @@ class Vue:
                     self.choix[1] = int(self.choix[1])
                 else:
                     self.choix[1] = 0
+
+                debut = time.time()
                 self.resultats = comparateur.lancer(self.choix[0], self.choix[1], self.choix[2])
                 Outils.afficher(self.resultats)
+                fin = time.time()
+                duree = fin - debut
+                print(duree)
+
             self.choix = []
             for i in range(self.nbDArguments):
                 self.choix.append(None)
