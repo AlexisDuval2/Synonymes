@@ -17,43 +17,7 @@ class Comparateur:
         self.resultats = []
         self.motsASupprimer = {}
         self.ordreDuTri = False
-        
-#     def produitScalaire(self, mot):
-#         if mot in self.dictionnaire:
-#             indexDuMot = self.dictionnaire[mot]
-#             for cooccurrence, index in self.dictionnaire.items():
-#                 if cooccurrence not in Outils.listeDArret and indexDuMot != index:
-#                     score = np.dot(self.matrice[indexDuMot], self.matrice[index])
-#                     self.resultats.append((cooccurrence, score))
-#             self.resultats.sort(key=itemgetter(1), reverse=True)
-#         
-#     def moindresCarres(self, mot):
-#         if mot in self.dictionnaire:
-#             indexDuMot = self.dictionnaire[mot]
-#             for cooccurrence, index in self.dictionnaire.items():
-#                 if cooccurrence not in Outils.listeDArret and indexDuMot != index:
-#                     score = np.sum((self.matrice[indexDuMot] - self.matrice[index])**2)
-#                     self.resultats.append((cooccurrence, score))
-#             self.resultats.sort(key=itemgetter(1))
-# 
-#     def blocDeVille(self, mot):
-#         if mot in self.dictionnaire:
-#             indexDuMot = self.dictionnaire[mot]
-#             for cooccurrence, index in self.dictionnaire.items():
-#                 if cooccurrence not in Outils.listeDArret and indexDuMot != index:
-#                     score = np.sum(np.abs(self.matrice[indexDuMot] - self.matrice[index]))
-#                     self.resultats.append((cooccurrence, score))
-#             self.resultats.sort(key=itemgetter(1))
-# 
-#     def lancer(self, mot, nbDeResultats, methode):
-#         if methode == '0':
-#             self.produitScalaire(mot)
-#         elif methode == '1':
-#             self.moindresCarres(mot)
-#         elif methode == '2':
-#             self.blocDeVille(mot)
-# 
-#         return self.resultats[:nbDeResultats]
+        self.methodeChoisie = None
 
     def produitScalaire(self, indexDuMot, index):
         return np.dot(self.matrice[indexDuMot], self.matrice[index])
@@ -64,58 +28,34 @@ class Comparateur:
     def blocDeVille(self, indexDuMot, index):
         return np.sum(np.abs(self.matrice[indexDuMot] - self.matrice[index]))
 
-    def trouverOrdreDuTri(self, methode):
-        if methode == '0':
-            self.ordreDuTri = True
-        elif methode == '1' or methode == '2':
-            self.ordreDuTri = False
+    def trouverMethodeChoisie(self, entree):
+        if entree == '0':
+            fonction = self.produitScalaire
+        elif entree == '1':
+            fonction = self.moindresCarres
+        elif entree == '2':
+            fonction = self.blocDeVille
+        return fonction
 
-    def calculer(self, fonction, methode):
+    def calculer(self, mot, fonction):
         if mot in self.dictionnaire:
             indexDuMot = self.dictionnaire[mot]
             for cooccurrence, index in self.dictionnaire.items():
                 if cooccurrence not in Outils.listeDArret and indexDuMot != index:
                     score = fonction(indexDuMot, index)
                     self.resultats.append((cooccurrence, score))
-            trouverOrdreDuTri(methode)
-            self.resultats.sort(key=itemgetter(1), reverse=self.ordreDuTri)
+
+
+        return fonction
+
+    def trier(self, methode):
+        if methode == '0':
+            self.resultats.sort(key=itemgetter(1), reverse=True)
+        else:
+            self.resultats.sort(key=itemgetter(1))
 
     def lancer(self, mot, nbDeResultats, methode):
-        
-        fonction = produitScalaire
-
-        if methode == '0':
-            self.produitScalaire(mot)
-        elif methode == '1':
-            self.moindresCarres(mot)
-        elif methode == '2':
-            self.blocDeVille(mot)
-
-        calculer(mot, f)
+        calculer(mot, fonction)
+        trier(methode)
  
         return self.resultats[:nbDeResultats]
-
-#-----------------------------------------
-# simplifier fonctions...
-#-----------------------------------------
-# 
-# NE PAS METTRE DE PARENTHÈSES LORSQUE J'APPELLE DES FONCTIONS!
-#
-#     def incremente(x):
-#         return x+1
-#     
-#     f = incremente
-#     f(3) # ça va donner 4
-#
-#----------------------
-#
-#     def test(vecteur1, vecteur2):
-#         np.sum(np.square(v1, v2))
-#
-#     def calculer(mot, fonction):
-#         fonction(v1, v2)
-#     
-#     f = test
-#     calculer(mot, f)
-#     
-#-----------------------------------------
