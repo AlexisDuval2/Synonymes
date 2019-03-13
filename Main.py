@@ -18,7 +18,7 @@ def main():
         vue.lancer()
     except Exception as e:
         print()
-        print("Problème avec le main")
+        print("Veuillez contacter Alexis Duval immédiatement s'il-vous-plaît")
     return 0
 if __name__ == '__main__':
     sys.exit(main())

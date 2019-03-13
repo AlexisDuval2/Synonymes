@@ -4,6 +4,7 @@ from Lecteur import *
 from Comparateur import *
 from Outils import *
 import re
+import time
 
 # --------------------------------------
 # classe Vue
@@ -21,7 +22,12 @@ class Vue:
         
     def lancer(self):
         lecteur = Lecteur(self.tailleFenetre, self.encodage, self.chemins)
+        
+        debut = time.time()
         lecteur.lancer()
+        fin = time.time()
+        duree = fin - debut
+        
         for i in range(self.nbDArguments):
             self.choix.append(None)
         while True:

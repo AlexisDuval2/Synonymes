@@ -15,8 +15,6 @@ class Comparateur:
         self.dictionnaire = lecteur.dictionnaire
         self.matrice = lecteur.matrice
         self.resultats = []
-        self.motsASupprimer = {}
-        self.ordreDuTri = False
         self.methodeChoisie = None
 
     def produitScalaire(self, indexDuMot, index):
@@ -28,34 +26,30 @@ class Comparateur:
     def blocDeVille(self, indexDuMot, index):
         return np.sum(np.abs(self.matrice[indexDuMot] - self.matrice[index]))
 
-    def trouverMethodeChoisie(self, entree):
-        if entree == '0':
-            fonction = self.produitScalaire
-        elif entree == '1':
-            fonction = self.moindresCarres
-        elif entree == '2':
-            fonction = self.blocDeVille
-        return fonction
+    def trouverMethodeChoisie(self, methodeChoisie):
+        if methodeChoisie == '0':
+            self.methodeChoisie = self.produitScalaire
+        elif methodeChoisie == '1':
+            self.methodeChoisie = self.moindresCarres
+        elif methodeChoisie == '2':
+            self.methodeChoisie = self.blocDeVille
 
-    def calculer(self, mot, fonction):
+    def calculer(self, mot, methode):
         if mot in self.dictionnaire:
             indexDuMot = self.dictionnaire[mot]
             for cooccurrence, index in self.dictionnaire.items():
                 if cooccurrence not in Outils.listeDArret and indexDuMot != index:
-                    score = fonction(indexDuMot, index)
+                    score = methode(indexDuMot, index)
                     self.resultats.append((cooccurrence, score))
 
-
-        return fonction
-
-    def trier(self, methode):
-        if methode == '0':
+    def trier(self, methodeChoisie):
+        if methodeChoisie == '0':
             self.resultats.sort(key=itemgetter(1), reverse=True)
         else:
             self.resultats.sort(key=itemgetter(1))
 
-    def lancer(self, mot, nbDeResultats, methode):
-        calculer(mot, fonction)
-        trier(methode)
- 
+    def lancer(self, mot, nbDeResultats, methodeChoisie):
+        self.trouverMethodeChoisie(methodeChoisie)
+        self.calculer(mot, self.methodeChoisie)
+        self.trier(methodeChoisie)
         return self.resultats[:nbDeResultats]
