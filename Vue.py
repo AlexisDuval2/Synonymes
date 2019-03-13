@@ -30,7 +30,7 @@ class Vue:
             if self.choix[0] == self.quitter:
                 Outils.afficherMsgQuitter()
                 return 0
-            elif len(self.choix) >= 3:
+            elif len(self.choix) >= self.nbDArguments:
                 self.choix[0] = self.choix[0].lower()
                 comparateur = Comparateur(lecteur)
                 if re.match("^[1-9]\d*$", self.choix[1]):
