@@ -15,7 +15,7 @@ class Outils:
     def afficherMsgInitial():
         print()
         print("Entrez un mot, le nombre de synonymes que vous voulez et la méthode de calcul,")
-        print("i.e. prduit scalaire: 0, least squares: 1, cityblock: 2")
+        print("i.e. produit scalaire: 0, least squares: 1, cityblock: 2")
         print()
         print("Tapez q pour quitter")
         print()

@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from Comparateur import *
-from Lecteur import *
 from Vue import *
 
 # --------------------------------------

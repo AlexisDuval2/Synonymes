@@ -13,7 +13,6 @@ class Lecteur:
         self.decalage = self.tailleFenetre//2
         self.encodage = encodage
         self.chemins = chemins
-
         self.texte = []
         self.expression = "\w+"
         self.liste = []

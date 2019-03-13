@@ -4,7 +4,6 @@ from Lecteur import *
 from Comparateur import *
 from Outils import *
 import re
-import time
 
 # --------------------------------------
 # classe Vue
@@ -22,13 +21,7 @@ class Vue:
         
     def lancer(self):
         lecteur = Lecteur(self.tailleFenetre, self.encodage, self.chemins)
-        
-        debut = time.time()
         lecteur.lancer()
-        fin = time.time()
-        duree = fin - debut
-        print(duree)
-        
         for i in range(self.nbDArguments):
             self.choix.append(None)
         while True:
@@ -44,14 +37,11 @@ class Vue:
                     self.choix[1] = int(self.choix[1])
                 else:
                     self.choix[1] = 0
-
-                debut = time.time()
-                self.resultats = comparateur.lancer(self.choix[0], self.choix[1], self.choix[2])
+                mot = self.choix[0]
+                nbDeResultats = self.choix[1]
+                methodeChoisie = self.choix[2]
+                self.resultats = comparateur.lancer(mot, nbDeResultats, methodeChoisie)
                 Outils.afficher(self.resultats)
-                fin = time.time()
-                duree = fin - debut
-                print(duree)
-
             self.choix = []
             for i in range(self.nbDArguments):
                 self.choix.append(None)
